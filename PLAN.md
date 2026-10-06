@@ -10,7 +10,7 @@
 Marca `[x]` y haz commit tras cada punto. Si se corta la sesión, retomar por el primer punto sin marcar.
 
 ## FASE 1 — DEFINICIÓN (sin código)
-- [ ] 1.1 Competencia → `docs/research/competencia.md`
+- [x] 1.1 Competencia → `docs/research/competencia.md`
 - [ ] 1.2 Modelos fiscales y plazos + checklist de reverificación → `docs/research/fiscal.md`
 - [ ] 1.3 Modelo de datos, roles y permisos → `docs/design/datos-y-permisos.md`
 - [ ] 1.4 Estructura de planes → `docs/design/planes.md`
