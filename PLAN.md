@@ -45,7 +45,7 @@ Estructura del repo: `apps/web` (web pública), `apps/admin` (panel de gestión)
 - [x] A1 `apps/web`: web pública (hero, problema/solución, cómo funciona, precios, confianza, CTA, legal placeholder)
 - [x] A2 `apps/admin`: panel de gestión con datos de ejemplo (CRM, cola de revisión, flujo de estados, plazos, planes editables, métricas, plantillas)
 - [x] A3 Pruebas locales (build, lint, navegación) y capturas
-- [ ] A4 Despliegue en proyectos Vercel nuevos (con permiso explícito) y enlaces para la interesada
+- [ ] A4 Despliegue en proyectos Vercel nuevos — BLOQUEADO: el conector de Vercel devuelve 403 al crear proyectos. Pasos manuales en `docs/despliegue-vercel.md`
 - [x] A5 Acceso del admin en demo: contraseña de demo simple (sin datos reales); NO es la seguridad final
 
 ## FASE 2B — Después de la demo (orden provisional)
