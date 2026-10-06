@@ -43,10 +43,10 @@ Marca `[x]` y haz commit tras cada punto. Si se corta la sesión, retomar por el
 ## FASE 2A — DEMO PARA ENSEÑAR (en curso; datos de ejemplo, sin backend)
 Estructura del repo: `apps/web` (web pública), `apps/admin` (panel de gestión), `apps/client` (dashboard cliente, después). Cada una es una app Next.js independiente, desplegable como proyecto Vercel propio.
 - [x] A1 `apps/web`: web pública (hero, problema/solución, cómo funciona, precios, confianza, CTA, legal placeholder)
-- [ ] A2 `apps/admin`: panel de gestión con datos de ejemplo (CRM, cola de revisión, flujo de estados, plazos, planes editables, métricas, plantillas)
-- [ ] A3 Pruebas locales (build, lint, navegación) y capturas
+- [x] A2 `apps/admin`: panel de gestión con datos de ejemplo (CRM, cola de revisión, flujo de estados, plazos, planes editables, métricas, plantillas)
+- [x] A3 Pruebas locales (build, lint, navegación) y capturas
 - [ ] A4 Despliegue en proyectos Vercel nuevos (con permiso explícito) y enlaces para la interesada
-- [ ] A5 Acceso del admin en demo: contraseña de demo simple (sin datos reales); NO es la seguridad final
+- [x] A5 Acceso del admin en demo: contraseña de demo simple (sin datos reales); NO es la seguridad final
 
 ## FASE 2B — Después de la demo (orden provisional)
 1. `apps/client` (dashboard cliente, separado) 2. Backend real (Supabase en cuenta/proyecto nuevo, RLS, auth, MFA) 3. Motor 303/130/Renta 4. OCR/IA Gemini 5. Legal `/legal/` 6. Endurecimiento.
