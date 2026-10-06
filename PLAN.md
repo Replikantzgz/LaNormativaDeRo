@@ -28,7 +28,32 @@ Marca `[x]` y haz commit tras cada punto. Si se corta la sesión, retomar por el
 - [x] 1.3 Modelo de datos, roles y permisos → `docs/design/datos-y-permisos.md`
 - [x] 1.4 Estructura de planes → `docs/design/planes.md`
 - [x] 1.5 Plan técnico completo en este `PLAN.md`
-- [ ] 1.6 PARAR: presentar todo y hacer las preguntas pendientes. **Sin aprobación no hay Fase 2.**
+- [x] 1.6 PARAR: presentado y preguntas respondidas por el usuario (ver «Decisiones ronda 2»). Aprobado construir la **demo de web + panel admin**.
+
+## DECISIONES RONDA 2 (usuario)
+- **Renta: SÍ en el MVP.** MVP primero.
+- **Web primero. PWA más adelante, solo cuando el usuario la pida** (tarea marcada después de Redsys). Se puede darle «forma» (maqueta/artefacto) pero no construirla ahora.
+- **IA: Gemini de pago** (se creará cuenta y recarga). Aún no se integra.
+- **Supabase y Vercel: proyectos NUEVOS.** Supabase solo permite 2 proyectos en la cuenta actual → **no se usa Supabase en esta fase**: todo con datos de ejemplo (mock) para no gastar proyectos. Vercel: un proyecto por app.
+- **Pasarela: Redsys, aplazado.**
+- **Urgente: enseñar a «la interesada» dos cosas:** (1) **web pública**, (2) **plataforma de gestión (dashboard admin)**.
+- **Dashboard de cliente y panel admin son aplicaciones DISTINTAS**, construidas por separado (otra app, otra ruta de despliegue, otro código). Ahora se construyen web y admin; el cliente después.
+- Diseño: fondo blanco, elegante, claro, sin complicaciones (el usuario subirá captura si hace falta).
+
+## FASE 2A — DEMO PARA ENSEÑAR (en curso; datos de ejemplo, sin backend)
+Estructura del repo: `apps/web` (web pública), `apps/admin` (panel de gestión), `apps/client` (dashboard cliente, después). Cada una es una app Next.js independiente, desplegable como proyecto Vercel propio.
+- [ ] A1 `apps/web`: web pública (hero, problema/solución, cómo funciona, precios, confianza, CTA, legal placeholder)
+- [ ] A2 `apps/admin`: panel de gestión con datos de ejemplo (CRM, cola de revisión, flujo de estados, plazos, planes editables, métricas, plantillas)
+- [ ] A3 Pruebas locales (build, lint, navegación) y capturas
+- [ ] A4 Despliegue en proyectos Vercel nuevos (con permiso explícito) y enlaces para la interesada
+- [ ] A5 Acceso del admin en demo: contraseña de demo simple (sin datos reales); NO es la seguridad final
+
+## FASE 2B — Después de la demo (orden provisional)
+1. `apps/client` (dashboard cliente, separado) 2. Backend real (Supabase en cuenta/proyecto nuevo, RLS, auth, MFA) 3. Motor 303/130/Renta 4. OCR/IA Gemini 5. Legal `/legal/` 6. Endurecimiento.
+
+## TAREAS APLAZADAS (se hacen cuando el usuario lo pida)
+- [ ] T1 Pasarela de pago **Redsys**
+- [ ] T2 **PWA** (instalable, cámara, cola offline) — después de Redsys o cuando el usuario lo solicite; mientras tanto solo maqueta/artefacto si se pide
 
 ---
 
