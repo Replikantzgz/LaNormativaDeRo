@@ -55,6 +55,14 @@ Estructura del repo: `apps/web` (web pública), `apps/admin` (panel de gestión)
 - [ ] T1 Pasarela de pago **Redsys**
 - [ ] T2 **PWA** (instalable, cámara, cola offline) — después de Redsys o cuando el usuario lo solicite; mientras tanto solo maqueta/artefacto si se pide
 
+## ESTADO ACTUAL — EN PAUSA (decisión del usuario)
+La demo (web + panel admin) está desplegada en https://lanormativadero.vercel.app (`/` y `/admin`) y ya se ha enseñado.
+**No se construye nada más hasta que la clienta entregue TODA su información**: diseño propio, logo, estructura de la web e instrucciones. Entonces se siguen **al pie de la letra** (sin reinterpretar) y se rehace la web/panel con su diseño.
+Después, integraciones (en este orden): backend real (Supabase en cuenta nueva), motor fiscal verificado, IA (Gemini).
+Cuentas que creará el usuario a nombre de la clienta (ella las gestiona y paga): Gmail, Gemini API de pago con su tarjeta de recarga, y su Supabase/Vercel cuando toque.
+**Antes de abrir a clientes reales:** verificar cifras fiscales en fuentes oficiales y resolver `docs/legal-open-questions.md` (sobre todo L1: quién puede presentar con apoderamiento sin colegiación).
+Al retomar: leer este bloque, la web y el panel actuales son solo una maqueta de la estructura, no el diseño final.
+
 ---
 
 ## PRODUCTO
