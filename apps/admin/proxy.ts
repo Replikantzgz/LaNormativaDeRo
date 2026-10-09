@@ -8,7 +8,10 @@ export async function proxy(request: NextRequest) {
   const token = request.cookies.get(COOKIE)?.value;
   const ok = password !== null && token === (await tokenFor(password));
   if (!ok) {
-    const url = new URL("/login", request.url);
+    // nextUrl respeta el basePath (/admin); un new URL("/login", ...) lo perdería.
+    const url = request.nextUrl.clone();
+    url.pathname = "/login";
+    url.search = "";
     return NextResponse.redirect(url);
   }
   return NextResponse.next();

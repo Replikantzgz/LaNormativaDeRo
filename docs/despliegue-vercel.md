@@ -1,20 +1,32 @@
-# Despliegue de la demo en Vercel (2 proyectos, 5 minutos)
+# Despliegue en Vercel: un proyecto, dos servicios
 
-El conector de Vercel de la sesión no tiene permiso para crear proyectos (error 403), así que se hace a mano. Son **dos proyectos independientes** del mismo repositorio:
+El repositorio se despliega como **un único proyecto de Vercel con varios servicios** (ver `vercel.json` en la raíz). Un dominio, una configuración de variables de entorno.
 
-| Proyecto | Root Directory | Framework | Variables de entorno |
+| Servicio | Carpeta | Ruta pública | Qué es |
 |---|---|---|---|
-| `lanormativadero-web` (web pública) | `apps/web` | Next.js | ninguna |
-| `lanormativadero-admin` (plataforma de gestión) | `apps/admin` | Next.js | `ADMIN_DEMO_PASSWORD` = contraseña a tu elección |
+| `web` | `apps/web` | `/` (todo lo que no sea `/admin`) | Web pública |
+| `admin` | `apps/admin` | `/admin` y `/admin/*` | Plataforma de gestión (demo) |
 
-## Pasos
+Los rewrites van de lo más específico a lo menos: `/admin/:path*` → `admin`, y `/(.*)` → `web` al final.
+No hay llamadas entre servicios, así que **no hay `bindings`**. Cuando exista el dashboard de cliente (`apps/client`) se añade como tercer servicio, por ejemplo en `/app`.
+
+## Pasos (los hace el dueño de la cuenta de Vercel)
 1. Vercel → **Add New → Project** → importa `Replikantzgz/LaNormativaDeRo`.
-2. En **Root Directory** pon `apps/web` (primer proyecto). Despliega.
-3. Repite con **Add New → Project** sobre el mismo repo, Root Directory `apps/admin`, y antes de desplegar añade `ADMIN_DEMO_PASSWORD` (Settings → Environment Variables).
-4. Rama a desplegar: `claude/vibrant-carson-0s9xif` (de momento no existe `main`). Para producción: Settings → Git → Production Branch.
-5. Si Vercel muestra «Vercel Authentication» activada, desactívala en Settings → Deployment Protection para que la interesada pueda abrir el enlace sin cuenta de Vercel (la plataforma de gestión ya tiene su propia contraseña de demo).
+2. **Root Directory**: la raíz del repo (donde está `vercel.json`). Vercel detecta los servicios.
+3. Rama a desplegar: `claude/vibrant-carson-0s9xif` (de momento no existe `main`).
+4. **Settings → Environment Variables**: añade `ADMIN_DEMO_PASSWORD` con la contraseña de la demo.
+5. Si «Vercel Authentication» está activada, desactívala en **Settings → Deployment Protection** para que la interesada abra el enlace sin cuenta de Vercel.
+
+## Cómo está preparado el código
+- `apps/admin/next.config.ts` tiene `basePath: "/admin"`: enlaces, recursos (`/admin/_next/...`) y redirecciones llevan el prefijo.
+- `apps/admin/proxy.ts` redirige con `request.nextUrl.clone()` (respeta el `basePath`).
+- La cookie de sesión de demo se limita a `path=/admin`: nunca viaja al servicio `web`.
+
+## Comprobado en local
+Con las dos apps detrás de una pasarela que imita los rewrites: la web responde en `/`; `/admin` redirige a `/admin/login`; tras entrar se navega por el panel sin ningún enlace sin prefijo ni respuestas de error; salir vuelve a `/admin/login`.
+**No** se ha podido probar con `vercel dev` ni desplegar (la red de la sesión bloquea Vercel y la conexión no puede crear proyectos).
 
 ## Notas
-- Sin `ADMIN_DEMO_PASSWORD` en producción, el panel admin queda **cerrado** a propósito (no hay contraseña por defecto fuera de desarrollo).
+- Sin `ADMIN_DEMO_PASSWORD` en producción, el panel queda **cerrado** a propósito.
 - Todo son datos ficticios; no hay base de datos ni Supabase en esta fase.
-- La contraseña de demo NO es la seguridad final: en la versión real habrá cuenta personal + doble factor.
+- La contraseña de demo NO es la seguridad final: la versión real tendrá cuenta personal + doble factor.

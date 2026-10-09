@@ -13,13 +13,13 @@ export async function login(_: { error?: string } | undefined, formData: FormDat
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
-    path: "/",
+    path: "/admin", // la cookie solo viaja al servicio admin, nunca a la web
     maxAge: 60 * 60 * 12,
   });
   redirect("/");
 }
 
 export async function logout() {
-  (await cookies()).delete(COOKIE);
+  (await cookies()).set(COOKIE, "", { path: "/admin", maxAge: 0 });
   redirect("/login");
 }
